@@ -4,7 +4,7 @@
 	<title>New York Times Search</title>
 	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">-->
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">	
 
 	<!-- Added link to the jQuery Library -->
@@ -12,57 +12,48 @@
 	<script src="assets/javascript/script.js"></script>	
 </head>
 <body>
-
-	<div id="bigContainer" class="container-fluid row text-center">
-	<header id="header" class="row col-md-12">
-		<img src="assets/images/NYSearch.png" alt="NYSearch" />
-	</header>
-
-	<div id="searchOpt" class="container-fluid row text-center">
-
-		<form id="form" class="row col-md-12">
-			<div id="topBars" class="row col-md-12">
-				Search Parameters
+	<div class="container-fluid">
+		<div class="row header">
+			<div class="col-xs-12 col-sm-8 col-sm-offset-2">
+				<img src="assets/images/NYSearch.png" alt="NYSearch" class="img-responsive" id="head-img" />
 			</div>
-
-			<div class="row col-md-12">
-				<p>Search Term:</p>
-				<input id="search-term" type="text" name="Whole Name" placeholder="Enter Search Term">
+		</div></br>
+		<div class="row">
+			<div class="col-xs-12 col-sm-8 col-sm-offset-2">
+				<div class="panel panel-default">
+					<div class="panel-heading">Search Parameters</div>
+					<div id="searchOpt" class="panel-body">
+						<form id="form" class="col-md-12">
+							<p>Search Term:</p>
+							<input id="search-term" type="text" name="Whole Name" placeholder="Enter Search Term">
+							<div class="form-group">
+								<label for="search-limit">Limit search:</label>
+								<select class="form-control" id="search-limit">
+									<option>1</option>
+									<option>5</option>
+									<option>10</option>
+								</select>
+							</div>
+							<p>Start Year(Optional)</p>
+							<input id="start-year" type="text" class="marginForForm" name="startYear"></input>
+							<p>End Year(Optional)</p>
+							<input id="end-year" type="text" class="marginForForm" name="endYear"></input>
+							<button id="search" class="col-md-3" type="button" value="search">Search</button>
+							<button id="clear" class="col-md-3" type="button" value="search">Clear Results</button>
+						</form>
+					</div>
+				</div>
 			</div>
-
-
-			<div class="row col-md-12">
-				<p>Number of Records to Retrieve</p>
-				<input id="search-limit" type="text" name="E-mail" placeholder="example@gmail.com">
+		</div>
+		<div class="row">
+			<div class="col-xs-12 col-sm-8 col-sm-offset-2">
+				<div class="panel panel-default">
+					<div class="panel-heading">Results</div>
+					<div id="results" class="panel-body">
+					</div>
+				</div>
 			</div>
-
-
-			<div class="row col-md-12">
-				<p>Start Year(Optional)</p>
-				<input id="start-year" type="text" class="marginForForm" name="startYear"></input>
-			</div>
-
-
-			<div class="row col-md-12">
-				<p>End Year(Optional)</p>
-				<input id="end-year" type="text" class="marginForForm" name="endYear"></input>
-			</div>
-
-			<div id="searchClear" class="row col-md-12">
-				<button id="search" class="col-md-3" type="button" value="search">Search</button>
-				<button id="clear" class="col-md-3" type="button" value="search">Clear Results</button>
-			</div>
-
-		</form>
-
-	</div>
-
-	<div id="results" class="container-fluid row text-center">
-		<div id="topBars" class="row col-md-12">
-			Top Articles
 		</div>
 	</div>
-	</div>
-
 </body>
 </html>

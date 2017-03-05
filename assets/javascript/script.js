@@ -1,29 +1,30 @@
 $(document).ready(function () {
 
-    function setResults(data) {
-        for (var item = 0; item < data.length; item++) {
+    function setResults(data, searchLimit) {
+        for (var item = 0; item < searchLimit; item++) {
             var currentArticle = data[item],
-                itemNumber = item + 1;    
+                itemNumber = item + 1 + ":",   
                 result = $("<div>"),
-                title = $("<h2>").addClass("title").text(itemNumber + " " + currentArticle.headline.main + ": " + currentArticle.snippet),
-                // author = $("<p>").addClass("author").text(currentArticle.byline.person[0].firstname + " " + currentArticle.byline.person[0].lastname),
+                title = $("<h4>").addClass("title").text(itemNumber + " " + currentArticle.headline.main),
+                snip = $("<p>").addClass("snip").text(currentArticle.lead_paragraph),
                 date = $("<p>").addClass("date").text(currentArticle.pub_date),
-                    link = $("a").attr("href", currentArticle.web_url);
-                console.log(currentArticle);
+                link = $("<a>").attr("href", currentArticle.web_url).text(currentArticle.web_url);
             
             result
                 .append(title)
-                // .append(author)
+                .append(snip)
                 .append(date)
                 .append(link);
             $("#results").append(result);
         }
     }
 
-    function getData(searchTerm, startDate, endDate) {
-        var queryString = searchTerm;
+    function getData(searchTerm, searchLimit, startDate, endDate, page) {
+        var queryString = searchTerm,
+            limit = searchLimit,    
             start = startDate,
-            end = endDate;
+            end = endDate
+            page = page;
         
         if (startDate != "" || startDate == null) {
             start = "&begin_date=" + startDate;
@@ -39,18 +40,19 @@ $(document).ready(function () {
             url: apiUrl,
             method: "GET"
         }).done(function (data) {
-            console.log(data);
-            setResults(data.response.docs);
+            // console.log(data);
+            setResults(data.response.docs, limit);
         });
     }
 
     $("#search").on("click", function () {
+        $("#results").empty();
         var searchTerm = $("#search-term").val(),
+            limit = $("#search-limit").val();    
             startYear = $("#start-year").val(),
             endYear = $("#end-year").val();
-            console.log(searchTerm);
         
-        getData(searchTerm, startYear, endYear);
+        getData(searchTerm, limit, startYear, endYear, 0);
     });
   
     $("#clear").on("click", function () {
